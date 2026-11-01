@@ -1,7 +1,7 @@
 // GitHub Pages: experiencia pública y panel de muestra, sin credenciales reales.
-import { USD, whatsappLink, whatsappMessages } from '../shared/site.config.mjs';
-import { state, esc, programOf, navigate, toast } from './core.js';
-import { rebaseLinks } from './pages-routing.js';
+import { USD, whatsappLink, whatsappMessages } from '../shared/site.config.mjs?v=20261101-courses-1';
+import { state, esc, programOf, navigate, toast } from './core.js?v=20261101-courses-1';
+import { rebaseLinks } from './pages-routing.js?v=20261101-courses-1';
 
 const note = '<p class="demo-note">Vista previa de GitHub Pages. No se crean cuentas, no se guardan contraseñas y no se procesan pagos.</p>';
 const selected = () => programOf(new URLSearchParams(location.search).get('plan'));
