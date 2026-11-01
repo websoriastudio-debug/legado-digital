@@ -256,7 +256,7 @@ const howSection = () => `
         <thead><tr><th scope="col">Tu nivel</th><th scope="col">Puedes revender</th></tr></thead>
         <tbody>
           <tr><th scope="row">START</th><td>START</td></tr>
-          <tr><th scope="row">PRO</th><td>START e PRO</td></tr>
+          <tr><th scope="row">PRO</th><td>START y PRO</td></tr>
           <tr><th scope="row">ELITE</th><td>START, PRO y ELITE</td></tr>
         </tbody>
       </table>
@@ -384,7 +384,7 @@ export function renderProgram(main, slug) {
   const p = state.programs.find((x) => x.slug === slug);
   if (!p) return null;
   const others = state.programs.filter((x) => x !== p);
-  const resale = { 1: 'START', 2: 'START e PRO', 3: 'START, PRO y ELITE' }[p.rank];
+  const resale = { 1: 'START', 2: 'START y PRO', 3: 'START, PRO y ELITE' }[p.rank];
   main.innerHTML = `
   <section class="s-programs s-program">
     <div class="wrap s-program__grid">
