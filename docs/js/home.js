@@ -1,12 +1,11 @@
 // Experiencia pública: portada, apartados y demostraciones educativas.
-import { brand, comparison, faqs, projects, story, USD, whatsapp, whatsappLink, whatsappMessages, pending } from '../shared/site.config.mjs';
+import { brand, comparison, faqs, USD, whatsapp, whatsappLink, whatsappMessages, pending } from '../shared/site.config.mjs';
 import { api, currentRef, esc, fieldError, state, toast } from './core.js';
 import { initLogoLight, initParallax, initReveals, initSilk, initThread } from './effects.js';
 
 const wa = (msg) => whatsappLink(msg, currentRef());
 export const btn = (label, attrs = '', cls = 'btn--gold') => `<a class="btn ${cls}" ${attrs}><span class="btn__in">${esc(label)}</span></a>`;
 const waBtn = (label, msg, cls = 'btn--ghost') => btn(label, `href="${esc(wa(msg))}" target="_blank" rel="noopener noreferrer"`, cls);
-const founder = esc(brand.founderName);
 
 function lines(text) {
   return text.map((l, i) => `<span class="line"><span style="--i:${i}">${esc(l)}</span></span>`).join(' ');
@@ -23,44 +22,17 @@ const hero = () => `
       <span class="s-hero__sheen" aria-hidden="true"></span>
     </div>
     <div class="s-hero__copy">
-      <h1 id="titulo-inicio" class="hero-title">${lines(['Construye tu marca.', 'Desarrolla tus', 'habilidades digitales.'])}</h1>
-      <p class="hero-sub">Formación en marca personal, ventas digitales, WhatsApp e inteligencia artificial, para desarrollar una presencia digital con propósito.</p>
+      <h1 id="titulo-inicio" class="hero-title">${lines(['Aprende marketing.', 'Construye tu', 'negocio digital.'])}</h1>
+      <p class="hero-sub">Cursos de marketing digital, ventas, contenido y automatización para emprendedores. Empieza con START y avanza con PRO o ELITE.</p>
       <div class="hero-actions">
-        ${btn('Explorar programas', 'href="/#programas"')}
+        ${btn('Ver los cursos', 'href="/#programas"')}
         ${waBtn('Hablar por WhatsApp', whatsappMessages.general())}
       </div>
     </div>
   </div>
 </section>`;
 
-/* ---------- Nuestra historia ---------- */
-const storySection = () => `
-<section class="s-story" id="nuestra-historia" aria-labelledby="titulo-historia">
-  <div class="wrap s-story__grid">
-    <figure class="portrait rv">
-      ${story.portrait
-        ? `<img src="${esc(story.portrait)}" alt="${founder}" loading="lazy" data-parallax="28">`
-        : `<div class="portrait__empty" data-parallax="28" aria-hidden="true"></div>
-           <figcaption><span class="tag">Por confirmar</span> Aquí irá el retrato real de ${founder}.</figcaption>`}
-    </figure>
-    <div class="s-story__text">
-      <h2 id="titulo-historia" class="display rv-lines">${lines(['Detrás de la marca', 'hay una persona.'])}</h2>
-      <p class="lede rv">${esc(story.intro)}</p>
-      <blockquote class="quote rv">
-        ${story.quote ? `<p>${esc(story.quote)}</p>` : `<p class="quote__empty">Aquí irá una cita real de ${founder}, con sus propias palabras.</p><span class="tag">Por confirmar</span>`}
-      </blockquote>
-    </div>
-  </div>
-  <ol class="wrap timeline" aria-label="Línea temporal">
-    ${story.timeline.map((t, i) => `
-      <li class="timeline__item rv" style="--d:${i * 90}ms">
-        <h3>${esc(t.title)}</h3>
-        ${t.text ? `<p>${esc(t.text)}</p>` : `<p class="muted">${esc(t.hint)}</p><span class="tag">Por confirmar</span>`}
-      </li>`).join('')}
-  </ol>
-</section>`;
-
-/* ---------- Qué aprenderás ---------- */
+/* ---------- Muestras educativas ---------- */
 const MODULES = [
   { id: 'marca', title: 'Marca personal', text: 'Define a quién ayudas y cómo decirlo en una frase que cualquiera pueda repetir.', demo: () => `
     <div class="demo-grid">
@@ -97,7 +69,7 @@ const MODULES = [
     </div>
     <div class="bubble" id="d-bubble" aria-live="polite"></div>
     <p class="note">Mensaje de ejemplo. Adáptalo a tu forma de hablar.</p>` },
-  { id: 'ia', title: 'Inteligencia artificial', text: 'Pide a ChatGPT un borrador útil dándole contexto. Arma tu instrucción y cópiala.', demo: () => `
+  { id: 'ia', title: 'Automatización', text: 'Prepara instrucciones para organizar tareas repetitivas con herramientas de apoyo. Este ejemplo genera un borrador que debes revisar.', demo: () => `
     <div class="demo-grid">
       <div class="field"><label for="d-tarea">Qué necesitas</label><select id="d-tarea">
         <option value="tres ideas de publicaciones">Ideas de publicaciones</option>
@@ -216,6 +188,7 @@ export function planActionAttrs(p) {
 
 const plan = (p, i) => `
 <article class="tier tier--${p.slug} rv" style="--d:${i * 110}ms" aria-labelledby="plan-${p.slug}">
+  <p class="tier__level">Nivel ${p.rank}</p>
   <div class="tier__head">
     <h3 id="plan-${p.slug}">${esc(p.name)}</h3>
     <p class="tier__price">${USD(p.priceCents)}</p>
@@ -235,7 +208,7 @@ const plan = (p, i) => `
 export const comparisonTable = () => `
 <div class="compare rv">
   <table>
-    <caption>Comparación de acceso y permisos</caption>
+    <caption>Compara los contenidos y las licencias</caption>
     <thead><tr><td></td>${state.programs.map((p) => `<th scope="col">${esc(p.name)}</th>`).join('')}</tr></thead>
     <tbody>
       <tr><th scope="row">Precio de pago único</th>${state.programs.map((p) => `<td data-plan="${esc(p.name)}">${USD(p.priceCents)}</td>`).join('')}</tr>
@@ -248,7 +221,7 @@ export const programsSection = (headingLevel = 'h2') => `
 <section class="s-programs" id="programas" aria-labelledby="titulo-programas">
   <div class="wrap">
     <div class="s-programs__intro">
-      <${headingLevel} id="titulo-programas" class="display rv-lines">${lines(['Tres programas.', 'Cada uno suma', 'al anterior.'])}</${headingLevel}>
+      <${headingLevel} id="titulo-programas" class="display rv-lines">${lines(['Tres niveles.', 'Un camino para', 'aprender a vender.'])}</${headingLevel}>
       <p class="lede rv">Pagas una sola vez. Puedes empezar por uno y subir más adelante pagando solo la diferencia.</p>
     </div>
     <div class="tiers">${state.programs.map(plan).join('')}</div>
@@ -258,17 +231,16 @@ export const programsSection = (headingLevel = 'h2') => `
 
 /* ---------- Cómo funciona ---------- */
 const STEPS = [
-  ['Elige tu programa', 'Compara los tres y quédate con el que te sirve hoy. Puedes consultarnos por WhatsApp sin registrarte.'],
-  ['Registra tus datos', 'Crea tu cuenta. Tu elección se conserva y aparece como una operación pendiente.'],
-  ['Consulta el pago', 'Te indicamos cómo pagar por WhatsApp. Después, puedes subir tu comprobante a la operación.'],
-  ['Espera la validación', 'Un administrador verifica el pago y aprueba o rechaza la operación, con una explicación.'],
-  ['Accede a tu nivel', 'Tu nivel se activa y entras a tus contenidos desde Mi cuenta. Si un curso aún no está cargado, lo verás indicado.'],
+  ['Elige tu curso', 'Compara START, PRO y ELITE y revisa el contenido de cada nivel.'],
+  ['Consulta por WhatsApp', 'Prepara tu consulta con el curso elegido. No necesitas una cuenta para pedir información.'],
+  ['Confirma las condiciones', 'Consulta la disponibilidad de las lecciones, el medio de pago y las condiciones de acceso y reventa antes de comprar.'],
+  ['Accede cuando se habilite', 'La plataforma completa activará el contenido tras validar la compra. En esta vista previa puedes explorar el área de muestra.'],
 ];
 const howSection = () => `
 <section class="s-how" id="como-funciona" aria-labelledby="titulo-como">
   <div class="wrap s-how__grid">
     <div class="s-how__pin">
-      <h2 id="titulo-como" class="display rv-lines">${lines(['Cómo funciona'])}</h2>
+      <h2 id="titulo-como" class="display rv-lines">${lines(['Cómo empezar'])}</h2>
       <p class="s-how__count" aria-hidden="true"><span id="paso-actual">1</span><small>de ${STEPS.length}</small></p>
     </div>
     <ol class="steps">
@@ -278,20 +250,20 @@ const howSection = () => `
   <div class="wrap s-how__resale">
     <div>
       <h3 class="subhead rv">La opción de reventa</h3>
-      <p class="rv">Con tu compra validada recibes un enlace personal. Tu nivel decide qué programas puedes revender. Registrar una venta no equivale a un pago: las condiciones de comisión aún están por definir.</p>
+      <p class="rv">Cada curso incluye los permisos de reventa indicados. Su uso requiere las condiciones escritas de la licencia. El enlace personal se habilitará en la plataforma completa tras validar la compra; esta vista previa no paga comisiones.</p>
       <table class="matrix rv">
         <caption class="sr-only">Programas que puede revender cada nivel</caption>
         <thead><tr><th scope="col">Tu nivel</th><th scope="col">Puedes revender</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Esencial</th><td>Esencial</td></tr>
-          <tr><th scope="row">Impulso</th><td>Esencial e Impulso</td></tr>
-          <tr><th scope="row">Avanzado</th><td>Esencial, Impulso y Avanzado</td></tr>
+          <tr><th scope="row">START</th><td>START</td></tr>
+          <tr><th scope="row">PRO</th><td>START e PRO</td></tr>
+          <tr><th scope="row">ELITE</th><td>START, PRO y ELITE</td></tr>
         </tbody>
       </table>
     </div>
     <div>
       <h3 class="subhead rv">Subir de nivel</h3>
-      <p class="rv">Pagas la diferencia. Conservas tu acceso actual y el nuevo se activa cuando se valida el pago.</p>
+      <p class="rv">Solicita el nivel superior pagando la diferencia prevista. Confirma por WhatsApp cómo se valida la actualización y cuándo se habilitará el contenido.</p>
       <table class="matrix rv">
         <caption class="sr-only">Diferencia a pagar por actualización</caption>
         <thead><tr><th scope="col">Cambio</th><th scope="col">Diferencia</th></tr></thead>
@@ -322,41 +294,7 @@ function initHow(root) {
 }
 
 /* ---------- Experiencias y proyectos ---------- */
-const SCENES = {
-  dusk: `<svg viewBox="0 0 1200 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs><linearGradient id="sc-a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1414"/><stop offset=".62" stop-color="#2e3a2c"/><stop offset=".8" stop-color="#a98a53"/></linearGradient>
-    <radialGradient id="sc-b"><stop offset="0" stop-color="#F0D69C" stop-opacity=".9"/><stop offset="1" stop-color="#F0D69C" stop-opacity="0"/></radialGradient></defs>
-    <rect width="1200" height="620" fill="url(#sc-a)"/><circle cx="820" cy="400" r="260" fill="url(#sc-b)"/><circle cx="820" cy="400" r="44" fill="#F0D69C"/>
-    <path d="M0 420C160 360 300 410 460 372S760 330 900 390 1120 420 1200 380V620H0Z" fill="#17231c"/>
-    <path d="M0 500C220 450 400 520 640 470S1000 460 1200 500V620H0Z" fill="#0b1411"/></svg>`,
-  ridge: `<svg viewBox="0 0 700 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs><linearGradient id="sc-c" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#08171a"/><stop offset="1" stop-color="#23413f"/></linearGradient></defs>
-    <rect width="700" height="900" fill="url(#sc-c)"/>
-    <path d="M0 620L180 360 310 520 470 250 700 600V900H0Z" fill="#132b2a"/><path d="M470 250l40 62-30-12-26 30-22-24Z" fill="#D9B875" opacity=".7"/>
-    <path d="M0 760L220 560 400 720 560 580 700 700V900H0Z" fill="#0a1a19"/></svg>`,
-  tide: `<svg viewBox="0 0 900 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs><linearGradient id="sc-d" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#101a10"/><stop offset="1" stop-color="#34401f"/></linearGradient></defs>
-    <rect width="900" height="620" fill="url(#sc-d)"/>
-    <g fill="none" stroke="#D9B875" stroke-opacity=".45"><path d="M-20 420C160 340 300 490 480 400S760 330 920 410"/><path d="M-20 460C160 380 300 530 480 440S760 370 920 450"/><path d="M-20 500C160 420 300 570 480 480S760 410 920 490"/><path d="M-20 540C160 460 300 610 480 520S760 450 920 530"/></g>
-    <g fill="#F0D69C"><circle cx="240" cy="190" r="4"/><circle cx="430" cy="130" r="4"/><circle cx="620" cy="200" r="4"/></g>
-    <g fill="none" stroke="#F0D69C" stroke-opacity=".4"><path d="M240 190L430 130 620 200"/></g></svg>`,
-};
-const projectsSection = () => `
-<section class="s-projects" id="experiencias-y-proyectos" aria-labelledby="titulo-proyectos">
-  <div class="wrap">
-    <h2 id="titulo-proyectos" class="display rv-lines">${lines(['Experiencias', 'y proyectos'])}</h2>
-    <p class="lede rv">Lo vivido fuera del aula también enseña. Este espacio mostrará proyectos reales y experiencias de ${founder}.</p>
-    <div class="gallery">
-      ${projects.map((p) => `
-      <figure class="scene scene--${p.size} rv">
-        <div class="scene__art" data-parallax="26">${p.media ? `<img src="${esc(p.media)}" alt="${esc(p.title)}" loading="lazy">` : SCENES[p.scene]}</div>
-        <figcaption><h3>${esc(p.title)}</h3><p>${esc(p.text)}</p>${p.confirmed ? '' : '<span class="tag">Ilustración: pendiente de foto real</span>'}</figcaption>
-      </figure>`).join('')}
-    </div>
-  </div>
-</section>`;
-
-/* ---------- Preguntas ---------- */
+/* ---------- Preguntas frecuentes ---------- */
 const faqSection = () => `
 <section class="s-faq" id="preguntas-frecuentes" aria-labelledby="titulo-preguntas">
   <div class="wrap s-faq__grid">
@@ -421,7 +359,7 @@ function initContact(root) {
 
 /* ---------- Montaje ---------- */
 export function renderHome(main) {
-  main.innerHTML = hero() + storySection() + learn() + programsSection() + howSection() + projectsSection() + faqSection() + contactSection();
+  main.innerHTML = hero() + learn() + programsSection() + howSection() + faqSection() + contactSection();
   const stops = [
     initSilk(main.querySelector('.s-hero__silk')),
     initLogoLight(main.querySelector('#logo-hero')),
@@ -442,10 +380,11 @@ export function renderProgramsPage(main) {
 }
 
 export function renderProgram(main, slug) {
+  slug = ({esencial:"start",impulso:"pro",avanzado:"elite"})[slug] || slug;
   const p = state.programs.find((x) => x.slug === slug);
   if (!p) return null;
   const others = state.programs.filter((x) => x !== p);
-  const resale = { 1: 'Esencial', 2: 'Esencial e Impulso', 3: 'Esencial, Impulso y Avanzado' }[p.rank];
+  const resale = { 1: 'START', 2: 'START e PRO', 3: 'START, PRO y ELITE' }[p.rank];
   main.innerHTML = `
   <section class="s-programs s-program">
     <div class="wrap s-program__grid">
@@ -464,7 +403,7 @@ export function renderProgram(main, slug) {
         <h2 class="subhead">Qué incluye</h2>
         <ul class="tier__list tier__list--open">${p.features.map((f) => `<li>${check}<span>${esc(f)}</span></li>`).join('')}</ul>
         ${p.draftNote ? `<p class="note">${esc(p.draftNote)}</p>` : ''}
-        <h2 class="subhead">Reventa habilitable</h2>
+        <h2 class="subhead">Licencias de reventa</h2>
         <p>${esc(resale)}, conforme a las condiciones aprobadas.</p>
         <h2 class="subhead">Otros programas</h2>
         <ul class="other-plans">${others.map((o) => `<li><a class="link" href="/programas/${o.slug}">${esc(o.name)}, ${USD(o.priceCents)}</a></li>`).join('')}</ul>
