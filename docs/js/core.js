@@ -1,5 +1,5 @@
 // Estado compartido y utilidades de la interfaz.
-import { programs as basePrograms } from '../shared/site.config.mjs?v=20261101-courses-1';
+import { programs as basePrograms } from '../shared/site.config.mjs';
 
 export const state = { user: null, demo: true, staticPreview: true, programs: basePrograms, demoAccounts: [] };
 

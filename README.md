@@ -1,9 +1,13 @@
 # Legado Digital
 
-Web: https://websoriastudio-debug.github.io/legado-digital/
+Web pública: https://websoriastudio-debug.github.io/legado-digital/
 
-Plataforma de cursos de marketing digital para emprendedores. El catálogo aprobado es START (US$50), PRO (US$100) y ELITE (US$200), todos de pago único. Los contenidos y licencias se definen en docs/shared/site.config.mjs.
+## Publicación
 
-La web pública incluye comparación de cursos, muestras educativas, menú, animaciones y WhatsApp al +51 947 328 715. El área de alumnos es una demostración; las cuentas y pagos reales requieren un servidor independiente. No se incluyen bases de datos, credenciales ni código privado.
+GitHub Pages sirve la rama main y la carpeta /docs. Esta versión incluye la web pública, tres programas de US$50, US$100 y US$200, animaciones, menú y contacto por WhatsApp al +51 947 328 715.
 
-GitHub Pages publica main y /docs. Las rutas antiguas de los programas se conservan como compatibilidad y muestran el catálogo nuevo. Antes de comercializar deben confirmarse las lecciones disponibles, las condiciones de acceso, devoluciones y licencias de reventa.
+El área de alumnos es una demostración sin cuentas, contraseñas ni pagos reales. Las consultas abren WhatsApp y no se guardan datos en un servidor. Este repositorio contiene exclusivamente la versión pública estática; no incluye bases de datos, credenciales ni código del servidor.
+
+## Configuración
+
+Los programas, el logo, los textos y WhatsApp se configuran en docs/shared/site.config.mjs. El temario avanzado y la información del fundador están pendientes de confirmación. Las cuentas y pagos reales requieren un servidor independiente.

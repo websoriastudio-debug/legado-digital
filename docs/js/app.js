@@ -1,10 +1,10 @@
-import { localPath, sitePath, rebaseLinks } from './pages-routing.js?v=20261101-courses-1';
+import { localPath, sitePath, rebaseLinks } from './pages-routing.js';
 // Arranque, enrutado, cabecera y menú.
-import { brand, nav, whatsappLink, whatsappMessages } from '../shared/site.config.mjs?v=20261101-courses-1';
-import { api, applyPrices, captureRef, choosePlan, currentRef, esc, state } from './core.js?v=20261101-courses-1';
-import { initPointer } from './effects.js?v=20261101-courses-1';
-import { renderFooter, renderHome, renderProgram, renderProgramsPage } from './home.js?v=20261101-courses-1';
-import * as acc from './account.js?v=20261101-courses-1';
+import { brand, nav, whatsappLink, whatsappMessages } from '../shared/site.config.mjs';
+import { api, applyPrices, captureRef, choosePlan, currentRef, esc, state } from './core.js';
+import { initPointer } from './effects.js';
+import { renderFooter, renderHome, renderProgram, renderProgramsPage } from './home.js';
+import * as acc from './account.js';
 
 const main = document.getElementById('contenido');
 const foot = document.getElementById('pie');
