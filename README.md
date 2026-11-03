@@ -2,12 +2,8 @@
 
 Web pública: https://websoriastudio-debug.github.io/legado-digital/
 
-## Publicación
+GitHub Pages publica la rama `main`, carpeta `/docs`. Esta versión procede de `LEGADO_DIGITAL_Web_y_Campus.zip` y presenta START (US$50), PRO (US$100) y ELITE (US$200), de pago único.
 
-GitHub Pages sirve la rama main y la carpeta /docs. Esta versión incluye la web pública, tres programas de US$50, US$100 y US$200, animaciones, menú y contacto por WhatsApp al +51 947 328 715.
+La portada, los temarios, la comparación y la consulta por WhatsApp están disponibles. El campus y la administración son demostraciones con datos de ejemplo, señaladas en la pantalla. No hay inicio de sesión real, cobros, pedidos guardados ni activaciones de clientes. La tarjeta está deshabilitada. Las consultas se abren en WhatsApp al +51 947 328 715.
 
-El área de alumnos es una demostración sin cuentas, contraseñas ni pagos reales. Las consultas abren WhatsApp y no se guardan datos en un servidor. Este repositorio contiene exclusivamente la versión pública estática; no incluye bases de datos, credenciales ni código del servidor.
-
-## Configuración
-
-Los programas, el logo, los textos y WhatsApp se configuran en docs/shared/site.config.mjs. El temario avanzado y la información del fundador están pendientes de confirmación. Las cuentas y pagos reales requieren un servidor independiente.
+GitHub Pages solo sirve archivos estáticos. Las cuentas, los permisos privados, las lecciones protegidas y las activaciones requieren alojar el backend del proyecto por separado. No se publica código del servidor, secretos, bases de datos ni datos de clientes.
