@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "legado-digital",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["server.mjs", "--demo"],
+      "port": 4240
+    }
+  ]
+}
